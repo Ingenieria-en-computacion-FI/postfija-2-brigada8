@@ -19,18 +19,23 @@ Cola* crearCola() {
 
 void enqueue(Cola* c, void* dato, size_t size) {
 
+    if (c == NULL) {
+        return;
+    }
+
     NodoCola* nuevo = (NodoCola*) malloc(sizeof(NodoCola));
 
     if (nuevo == NULL) {
         printf("Error de memoria\n");
-        exit(1);
+        return;
     }
 
     nuevo->dato = malloc(size);
 
     if (nuevo->dato == NULL) {
         printf("Error de memoria\n");
-        exit(1);
+        free(nuevo);
+        return;
     }
 
     memcpy(nuevo->dato, dato, size);
@@ -38,9 +43,12 @@ void enqueue(Cola* c, void* dato, size_t size) {
     nuevo->siguiente = NULL;
 
     if (c->final == NULL) {
+
         c->frente = nuevo;
         c->final = nuevo;
+
     } else {
+
         c->final->siguiente = nuevo;
         c->final = nuevo;
     }
@@ -49,8 +57,8 @@ void enqueue(Cola* c, void* dato, size_t size) {
 char dequeue(Cola* c) {
 
     if (colaVacia(c)) {
-        printf("La cola esta vacia\n");
-        return '\0';
+        printf("Cola vacia\n");
+        return -1;
     }
 
     NodoCola* temp = c->frente;
