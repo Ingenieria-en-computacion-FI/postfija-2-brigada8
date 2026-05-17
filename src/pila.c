@@ -1,6 +1,7 @@
 #include "pila.h"
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 Pila* crearPila() {
 

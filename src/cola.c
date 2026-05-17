@@ -1,7 +1,7 @@
 #include "cola.h"
 #include <string.h>
 #include <stdio.h>
-
+#include <stdlib.h>
 
 Cola* crearCola() {
     Cola* c = (Cola*) malloc(sizeof(Cola));
